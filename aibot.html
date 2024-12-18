@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Perfect Disneyland Ride</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f8ff;
+        }
+        h1 {
+            text-align: center;
+            color: #003366;
+        }
+        .question-container {
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 18px;
+        }
+        select, input[type="text"], button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+            max-width: 400px;
+            display: block;
+            margin: 10px auto;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            text-align: center;
+            padding: 20px;
+            background-color: #e0f7fa;
+            border-radius: 10px;
+            border: 2px solid #00796b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tell Us About Your Perfect Disneyland Ride</h1>
+    
+    <div class="question-container">
+        <label for="favorite-movie">1. What is your favorite Disney movie?</label><br>
+        <select id="favorite-movie">
+            <option value="the lion king">The Lion King</option>
+            <option value="aladdin">Aladdin</option>
+            <option value="beauty and the beast">Beauty and the Beast</option>
+            <option value="frozen">Frozen</option>
+            <option value="pirates of the caribbean">Pirates of the Caribbean</option>
+            <option value="moana">Moana</option>
+            <option value="toy story">Toy Story</option>
+            <option value="the little mermaid">The Little Mermaid</option>
+            <option value="cinderella">Cinderella</option>
+        </select>
+    </div>
+
+    <div class="question-container">
+        <label for="ride-type">2. What is your favorite kind of ride?</label><br>
+        <select id="ride-type">
+            <option value="dark-ride">Dark Ride</option>
+            <option value="drop-ride">Drop Ride</option>
+            <option value="river-ride">River Ride</option>
+            <option value="roller-coaster">Roller Coaster</option>
+        </select>
+    </div>
+
+    <div class="question-container">
+        <label for="most-important">3. What is the most important to you in a ride?</label><br>
+        <select id="most-important">
+            <option value="lights">Lights</option>
+            <option value="music">Music</option>
+            <option value="speed">Speed</option>
+            <option value="drops">Drops</option>
+        </select>
+    </div>
+
+    <button id="generate-btn">Generate My Perfect Ride</button>
+
+    <div class="result" id="ride-description">
+        <!-- The result will be displayed here -->
+    </div>
+
+    <script>
+        // Ensure the script runs only after the page content is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listener to the button
+            document.getElementById('generate-btn').addEventListener('click', function() {
+                // Get input values from the dropdowns
+                const favoriteMovie = document.getElementById("favorite-movie").value;
+                const rideType = document.getElementById("ride-type").value;
+                const mostImportant = document.getElementById("most-important").value;
+
+                // Generate the initial description
+                let description = `Your perfect Disneyland ride is inspired by your favorite Disney movie: "${favoriteMovie.charAt(0).toUpperCase() + favoriteMovie.slice(1)}". `;
+
+                // Function to randomize text for variety
+                const randomChoice = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+                // Movie-specific details
+                let movieDetails = '';
+                switch (favoriteMovie) {
+                    case "the lion king":
+                        movieDetails = randomChoice([
+                            "Roar through the Pride Lands, joining Simba as he triumphs over Scar with powerful roars echoing through the savanna.",
+                            "Experience the iconic wildebeest stampede, the earth trembling as you race to safety alongside Simba and his friends.",
+                            "Sail past the serene river with Timon and Pumbaa, before encountering a dramatic battle in the shadow of Pride Rock."
+                        ]);
+                        break;
+                    case "aladdin":
+                        movieDetails = randomChoice([
+                            "Fly through the streets of Agrabah on your magic carpet, escaping from palace guards and discovering the Cave of Wonders.",
+                            "Explore the bustling market of Agrabah before soaring into the sky with Aladdin and his flying carpet to escape Jafar’s grasp.",
+                            "Dive into the magical Cave of Wonders, dodge traps, and encounter a mysterious genie who helps you escape danger!"
+                        ]);
+                        break;
+                    case "beauty and the beast":
+                        movieDetails = randomChoice([
+                            "Waltz through Beast's magnificent ballroom with Belle, bathed in candlelight and a magical glow from the enchanted objects.",
+                            "Escape from the dark corridors of Beast’s Castle, narrowly avoiding a wolf attack as you race to safety.",
+                            "Join Lumière and Cogsworth as they guide you through the enchanted halls, and experience the stunning moment when the Beast transforms."
+                        ]);
+                        break;
+                    case "frozen":
+                        movieDetails = randomChoice([
+                            "Embark on a magical journey through Arendelle’s frozen landscape, where Elsa’s ice powers create a breathtaking world of snow and ice.",
+                            "Ride through the sparkling ice palace, feeling the chill of Elsa’s magic as she sings ‘Let It Go’ in a burst of icy light.",
+                            "Travel with Elsa to the snowy mountains, experiencing the thrill of escaping a magical blizzard while Anna's voice fills the air."
+                        ]);
+                        break;
+                    case "pirates of the caribbean":
+                        movieDetails = randomChoice([
+                            "Board a pirate ship with Captain Jack Sparrow, sailing through treacherous seas filled with hidden treasure and danger.",
+                            "Set sail through a haunted pirate ship, hearing the eerie sounds of cursed souls while battling rival pirates.",
+                            "Get trapped in the swashbuckling fight for treasure, where cannons blast and pirates swing from ropes in a daring escape."
+                        ]);
+                        break;
+                    case "moana":
+                        movieDetails = randomChoice([
+                            "Venture across the Pacific Ocean on a boat with Moana, meeting fierce sea monsters and discovering the heart of Te Fiti.",
+                            "Watch as Moana calls upon the sea to help her battle the stormy ocean, navigating through treacherous waves.",
+                            "Sail toward the fiery island of Te Kā, with Moana and Maui working together to return the heart of Te Fiti to its rightful place."
+                        ]);
+                        break;
+                    case "toy story":
+                        movieDetails = randomChoice([
+                            "Shrink down to toy-size and help Woody and Buzz escape Sid’s evil plans, dodging giant toys and flying high above the room.",
+                            "Join the Toy Story gang on an epic adventure through Andy’s room, narrowly escaping Sid’s terrible trap in a fast-paced chase.",
+                            "Race alongside Buzz Lightyear and Woody as you fight off evil toys and take on Sid in a thrilling escape attempt!"
+                        ]);
+                        break;
+                    case "the little mermaid":
+                        movieDetails = randomChoice([
+                            "Dive deep into the ocean with Ariel and Flounder, exploring a world filled with vibrant coral reefs and mystical creatures.",
+                            "Glide through Ursula’s dark lair, hearing her sinister voice as you race against time to outsmart her tricks and escape.",
+                            "Celebrate Ariel’s undersea wedding, surrounded by vibrant fish and a magical light show under the sea!"
+                        ]);
+                        break;
+                    case "cinderella":
+                        movieDetails = randomChoice([
+                            "Experience the magic of the pumpkin carriage as it turns into a magnificent vehicle, racing through the palace gates before the clock strikes midnight.",
+                            "Join Cinderella as she sneaks out of the ball, trying to outrun the midnight curse while her fairy godmother watches from afar.",
+                            "Step into the royal ball, where Cinderella dances with Prince Charming, surrounded by a glittering palace backdrop and magical lights."
+                        ]);
+                        break;
+                    default:
+                        movieDetails = "An exciting adventure awaits!";
+                }
+
+                // Add the movie-specific details
+                description += movieDetails + " ";
+
+                // Add ride type details with variety
+                let rideTypeDetails = '';
+                if (rideType === "dark-ride") {
+                    rideTypeDetails = randomChoice([
+                        "Experience the mysterious world of shadows, where magical creatures and breathtaking scenes fill every corner of the ride.",
+                        "Your dark ride takes you through enchanted tunnels, filled with surprises and stunning visuals that leave you in awe.",
+                        "Brace yourself for a thrilling yet eerie adventure through dimly lit chambers, where danger lurks around every corner."
+                    ]);
+                } else if (rideType === "drop-ride") {
+                    rideTypeDetails = randomChoice([
+                        "Get ready for a heart-stopping drop that sends you plunging into the unknown, with a rush of adrenaline at every twist.",
+                        "Hold on tight for sudden drops that will leave you gasping for air, with each descent taking you deeper into the story’s danger!",
+                        "Feel the wind rush past as you plummet downward at breakneck speeds, your heart racing as you encounter unexpected twists."
+                    ]);
+                } else if (rideType === "river-ride") {
+                    rideTypeDetails = randomChoice([
+                        "Drift along serene waters, only to be startled by hidden surprises and sudden splashes from river rapids.",
+                        "Set sail on a river adventure, where calm waters quickly turn into thrilling, splashing rapids that keep you on your toes.",
+                        "Relax on the water, surrounded by beautiful sights, but watch out for wild rapids that will have you holding on tight!"
+                    ]);
+                } else if (rideType === "roller-coaster") {
+                    rideTypeDetails = randomChoice([
+                        "Buckle up for a high-speed adventure, full of twists, turns, and wild drops that take you on the ride of your life!",
+                        "Zoom through loops and dives, feeling the wind rush past as your roller coaster surges forward at breakneck speeds.",
+                        "The adrenaline soars as you twist and turn through sharp drops, loops, and fast-paced moments that keep you hanging on tight!"
+                    ]);
+                }
+
+                // Add most important ride element
+                let mostImportantDetail = '';
+                if (mostImportant === "lights") {
+                    mostImportantDetail = "brilliant lights that illuminate every moment of your journey, adding to the magic and mystery!";
+                } else if (mostImportant === "music") {
+                    mostImportantDetail = "a dynamic soundtrack that perfectly complements each twist and turn, creating an immersive experience!";
+                } else if (mostImportant === "speed") {
+                    mostImportantDetail = "incredible speed, pushing the limits as you race through each thrilling moment of your ride!";
+                } else if (mostImportant === "drops") {
+                    mostImportantDetail = "unexpected drops that will leave you gasping for air and longing for more thrills!";
+                }
+
+                // Final description
+                description += ` Most importantly, this ride will feature ${mostImportantDetail}`;
+
+                // Display the final description
+                document.getElementById("ride-description").innerText = description;
+            });
+        });
+    </script>
+</body>
+</html>
